@@ -22,57 +22,16 @@ class Book extends AppModel {
 
     public function __construct($id = false, $table = null, $ds = null) {
         $this->validate = array(
-
-            'id' => array(
-
-                'uuid' => array(
-                    'rule' => array('uuid'),
-                    //'message' => 'Your custom message here',
-                    //'allowEmpty' => false,
-                    //'required' => false,
-                    //'last' => false, // Stop validation after this rule
-                    //'on' => 'create', // Limit validation to 'create' or 'update' operations
-                ),
-
-                'numeric' => array(
-                    'rule' => array('numeric'),
-                    //'message' => 'Your custom message here',
-                    //'allowEmpty' => false,
-                    //'required' => false,
-                    //'last' => false, // Stop validation after this rule
-                    //'on' => 'create', // Limit validation to 'create' or 'update' operations
-                ),
-
-                'naturalnumber' => array(
-                    'rule' => array('naturalnumber'),
-                    //'message' => 'Your custom message here',
-                    //'allowEmpty' => false,
-                    //'required' => false,
-                    //'last' => false, // Stop validation after this rule
-                    //'on' => 'create', // Limit validation to 'create' or 'update' operations
-                ),
-            ),
-
             'title' => array(
-
-                'alphanumeric' => array(
-                    'rule' => array('alphanumeric'),
-                    'message' => 'Title must be ',
-                    //'allowEmpty' => false,
-                    //'required' => false,
-                    //'last' => false, // Stop validation after this rule
-                    //'on' => 'create', // Limit validation to 'create' or 'update' operations
-                ),
-
                 'minlength' => array(
-                    'rule' => array('minlength'),
-                    //'message' => 'Your custom message here',
+                    'rule' => array('minlength', 1),
+                    'message' => 'Title must be at least one character long',
                     //'allowEmpty' => false,
-                    //'required' => false,
+                    //'required' => true,
                     //'last' => false, // Stop validation after this rule
                     //'on' => 'create', // Limit validation to 'create' or 'update' operations
-                ),
-            ),
+                )
+            )
         );
         parent::__construct($id, $table, $ds);
     }

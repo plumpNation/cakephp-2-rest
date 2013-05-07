@@ -9,9 +9,24 @@ class BooksController extends AppController {
 
     public function view($id) {
         $book = $this->Book->findById($id);
+        $this->set('book', Set::map($book));
+        $this->set('_serialize', 'book');
+    }
+
+    public function add() {
+        $saved = $this->Book->save($this->request->data);
+        // exit('<pre>' . print_r($this->request->data, true) . '</pre>');
+
+        if ($saved) {
+            $message = 'Saved';
+
+        } else {
+            $message = 'Error';
+        }
+
         $this->set(array(
-            'book' => $book,
-            '_serialize' => array('book')
+            'message' => $message,
+            '_serialize' => array('message')
         ));
     }
 
