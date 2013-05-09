@@ -15,18 +15,20 @@ class BooksController extends AppController {
 
     public function add() {
         $saved = $this->Book->save($this->request->data);
-        // exit('<pre>' . print_r($this->request->data, true) . '</pre>');
 
         if ($saved) {
             $message = 'Saved';
+            $id = $this->Book->getLastInsertId();
 
         } else {
             $message = 'Error';
+            $id = null;
         }
 
         $this->set(array(
             'message' => $message,
-            '_serialize' => array('message')
+            'id' => $id,
+            '_serialize' => array('message', 'id')
         ));
     }
 
